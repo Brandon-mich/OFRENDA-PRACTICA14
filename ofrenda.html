@@ -26,6 +26,8 @@
     .stage{
       width:1100px;max-width:95%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));border-radius:18px;padding:28px;box-shadow:0 10px 40px rgba(0,0,0,0.6);
       border:1px solid rgba(255,255,255,0.03);
+      display: flex;
+      flex-direction: column;
     }
 
     header{display:flex;align-items:center;gap:16px;margin-bottom:18px}
@@ -40,7 +42,8 @@
 
     .altar{
       background:linear-gradient(180deg,#27273a 0%, #1e1e2e 100%);
-      border-radius:12px;padding:24px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;min-height:420px;border:1px solid rgba(255,255,255,0.03)
+      border-radius:12px;padding:24px;display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:start;min-height:420px;border:1px solid rgba(255,255,255,0.03);
+      flex-grow: 1;
     }
 
     /* zona principal */
@@ -48,59 +51,151 @@
     .ofrenda-top{display:flex;gap:12px;align-items:center}
     .photos{display:flex;gap:12px}
     .photo{
-      width:120px;height:120px;border-radius:8px;background:linear-gradient(135deg,#fff3cd,#ffd7a6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#2b2b42;box-shadow:0 6px 18px rgba(0,0,0,0.5);cursor:pointer;overflow:hidden;position:relative}
+      width:120px;height:120px;border-radius:8px;background:linear-gradient(135deg,#fff3cd,#ffd7a6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#2b2b42;box-shadow:0 6px 18px rgba(0,0,0,0.5);cursor:pointer;overflow:hidden;position:relative;user-select:none;
+      transition: transform 0.2s ease;
+    }
+    .photo:hover{transform:translateY(-4px);}
     .photo input{display:none}
-    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}
+
     .title{font-size:1.1rem;margin-bottom:8px}
 
     /* velas y flores */
     .altar-center{display:flex;gap:14px;align-items:flex-end;margin-top:14px}
     .velas{display:flex;gap:8px;align-items:end}
-    .vela{width:28px;height:80px;background:var(--candle);border-radius:8px 8px 4px 4px;position:relative;box-shadow:inset 0 -6px 12px rgba(0,0,0,0.08)}
-    .llama{position:absolute;left:50%;transform:translateX(-50%);top:-18px;width:18px;height:30px;border-radius:50% 50% 40% 40%/60% 60% 40% 40%;background:linear-gradient(180deg,#ffdd7a,#ff7b7b);filter:blur(1px);opacity:0.95}
-    .flor{width:80px;height:80px;border-radius:50%;background:conic-gradient(from 120deg, #ffb03b 0 20%, #ff8a00 20% 40%, #ffd27a 40% 60%);box-shadow:0 6px 20px rgba(255,140,0,0.12);display:flex;align-items:center;justify-content:center}
-
-    /* barra lateral */
-    aside{background:var(--card-bg);padding:16px;border-radius:10px;height:100%;align-self:stretch}
-    .detalle{display:flex;flex-direction:column;gap:12px}
-    .item{background:var(--glass);padding:10px;border-radius:8px}
-
-    .ofrenda-items{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-
-    /* botones */
-    .controls{display:flex;gap:8px;margin-top:12px}
-    button{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 12px;border-radius:8px;color:var(--text);cursor:pointer}
-    button.primary{background:linear-gradient(90deg,#ff9a9e,#fecf8a);color:#1b1b2f;border:0}
-
-    footer{margin-top:12px;font-size:0.85rem;opacity:0.9}
-
-    /* pequeño responsive */
-    @media (max-width:900px){
-      .altar{grid-template-columns:1fr;}
-      .photos{flex-wrap:wrap}
-      .photo{width:90px;height:90px}
-      .flor{width:64px;height:64px}
+    .vela{
+      width:28px;height:80px;background:var(--candle);border-radius:8px 8px 4px 4px;position:relative;box-shadow:inset 0 -6px 12px rgba(0,0,0,0.08);
+      cursor:pointer;
+      transition: box-shadow 0.3s ease;
+      user-select:none;
     }
-
-    /* detalles interactivos */
-    .photo:hover{transform:translateY(-4px);transition:transform .18s}
-    .vela.lit .llama{animation:flicker 1s infinite}
+    .vela:hover{
+      box-shadow: 0 0 8px 2px #ffde59 inset, inset 0 -6px 12px rgba(0,0,0,0.15);
+    }
+    .llama{
+      position:absolute;left:50%;transform:translateX(-50%);top:-18px;width:18px;height:30px;border-radius:50% 50% 40% 40%/60% 60% 40% 40%;background:linear-gradient(180deg,#ffdd7a,#ff7b7b);
+      filter:blur(1.3px);
+      opacity:0.95;
+      pointer-events:none;
+      visibility: hidden;
+    }
+    .vela.lit .llama{
+      visibility: visible;
+      animation:flicker 1s infinite;
+    }
     @keyframes flicker{
       0%{transform:translate(-50%,-18px) scale(1)}
       50%{transform:translate(-50%,-20px) scale(0.95)}
       100%{transform:translate(-50%,-18px) scale(1)}
     }
 
-    .hint{font-size:0.85rem;opacity:0.85}
+    .flor{
+      width:80px;height:80px;border-radius:50%;background:conic-gradient(from 120deg, #ffb03b 0 20%, #ff8a00 20% 40%, #ffd27a 40% 60%);
+      box-shadow:0 6px 20px rgba(255,140,0,0.12);
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.4rem;
+      user-select:none;
+    }
+
+    /* barra lateral */
+    aside{
+      background:var(--card-bg);
+      padding:16px;
+      border-radius:10px;
+      height:100%;
+      align-self:stretch;
+      display:flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .detalle{display:flex;flex-direction:column;gap:12px}
+
+    .item{
+      background:var(--glass);
+      padding:10px;
+      border-radius:8px;
+      user-select:none;
+    }
+
+    .ofrenda-items{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+
+    /* botones */
+    .controls{
+      display:flex;
+      gap:8px;
+      margin-top:12px;
+    }
+    button{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.08);
+      padding:8px 12px;
+      border-radius:8px;
+      color:var(--text);
+      cursor:pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+      user-select:none;
+    }
+    button.primary{
+      background:linear-gradient(90deg,#ff9a9e,#fecf8a);
+      color:#1b1b2f;
+      border:0;
+    }
+    button:hover{
+      background:rgba(255,255,255,0.1);
+    }
+
+    footer{
+      margin-top:12px;
+      font-size:0.85rem;
+      opacity:0.9;
+      text-align:center;
+      user-select:none;
+    }
+
+    /* pequeño responsive */
+    @media (max-width:900px){
+      .altar{grid-template-columns:1fr;}
+      .photos{flex-wrap:wrap}
+      .photo{width:90px;height:90px}
+      .flor{width:64px;height:64px;font-size:1.8rem}
+      aside{
+        margin-top: 20px;
+        height: auto;
+      }
+    }
+
+    /* área editable dedicatoria */
+    #dedicatoria{
+      width: 100%;
+      min-height: 100px;
+      resize: vertical;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    #dedicatoria:focus{
+      border-color: var(--marigold);
+      background: rgba(255,255,255,0.1);
+    }
   </style>
 </head>
 <body>
-  <div class="stage">
+  <div class="stage" role="main" aria-label="Ofrenda interactiva de Día de Muertos">
     <header>
-      <div style="width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#ffb27a,#ff6b6b);display:flex;align-items:center;justify-content:center;font-weight:700">🪦</div>
+      <div style="width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#ffb27a,#ff6b6b);display:flex;align-items:center;justify-content:center;font-weight:700" aria-hidden="true">🪦</div>
       <div>
         <h1>Ofrenda interactiva</h1>
-        <p> ofrenda de Día de Muertos — haz clic en las fotos para reemplazarlas y en las velas para encenderlas.</p>
+        <p>Ofrenda de Día de Muertos — haz clic en las fotos para reemplazarlas y en las velas para encenderlas.</p>
       </div>
     </header>
 
@@ -115,16 +210,16 @@
           <div>
             <div class="title">Fotos de los recordados</div>
             <div class="photos">
-              <label class="photo" title="Haz clic para subir una foto">
-                <input type="file" accept="image/*" class="img-input">
+              <label class="photo" title="Haz clic para subir una foto" tabindex="0" role="button" aria-label="Subir foto 1">
+                <input type="file" accept="image/*" class="img-input" aria-hidden="true" tabindex="-1">
                 <span>Subir foto</span>
               </label>
-              <label class="photo" title="Haz clic para subir una foto">
-                <input type="file" accept="image/*" class="img-input">
+              <label class="photo" title="Haz clic para subir una foto" tabindex="0" role="button" aria-label="Subir foto 2">
+                <input type="file" accept="image/*" class="img-input" aria-hidden="true" tabindex="-1">
                 <span>Subir foto</span>
               </label>
-              <label class="photo" title="Haz clic para subir una foto">
-                <input type="file" accept="image/*" class="img-input">
+              <label class="photo" title="Haz clic para subir una foto" tabindex="0" role="button" aria-label="Subir foto 3">
+                <input type="file" accept="image/*" class="img-input" aria-hidden="true" tabindex="-1">
                 <span>Subir foto</span>
               </label>
             </div>
@@ -132,10 +227,10 @@
         </div>
 
         <div class="altar-center">
-          <div class="velas" aria-hidden="true">
-            <div class="vela" data-vela="1"><div class="llama"></div></div>
-            <div class="vela" data-vela="2"><div class="llama"></div></div>
-            <div class="vela" data-vela="3"><div class="llama"></div></div>
+          <div class="velas" aria-label="Velas de la ofrenda" role="list">
+            <div class="vela" data-vela="1" role="listitem" tabindex="0" aria-pressed="false" aria-label="Vela 1, apagada"><div class="llama"></div></div>
+            <div class="vela" data-vela="2" role="listitem" tabindex="0" aria-pressed="false" aria-label="Vela 2, apagada"><div class="llama"></div></div>
+            <div class="vela" data-vela="3" role="listitem" tabindex="0" aria-pressed="false" aria-label="Vela 3, apagada"><div class="llama"></div></div>
           </div>
 
           <div style="flex:1;display:flex;flex-direction:column;gap:12px">
@@ -143,10 +238,10 @@
               <div class="flor" aria-hidden="true">🌼</div>
               <div>
                 <div class="title">Nombre o dedicatoria</div>
-                <div class="hint">Escribe aquí la dedicatoria que quieras mostrar en la ofrenda.</div>
+                <textarea id="dedicatoria" placeholder="Escribe aquí la dedicatoria que quieras mostrar en la ofrenda." aria-label="Área para escribir dedicatoria"></textarea>
               </div>
             </div>
-            <div class="item" style="background:transparent;border-radius:8px;padding:14px;border:1px dashed rgba(255,255,255,0.04)">
+            <div class="item" style="background:transparent;border-radius:8px;padding:14px;border:1px dashed rgba(255,255,255,0.04); user-select:none;">
               <p style="margin:0">En la mesa puedes colocar: pan de muerto, calaveritas de azúcar, copal, fotografías, objetos personales, comida favorita y una vela por cada memoria.</p>
             </div>
           </div>
@@ -158,7 +253,6 @@
             </div>
           </div>
         </div>
-
       </section>
 
       <aside>
@@ -168,7 +262,7 @@
             <ul style="margin:8px 0 0 18px;padding:0">
               <li>Haz clic en una foto para subir la imagen de la persona recordada.</li>
               <li>Haz clic en una vela para encenderla o apagarla.</li>
-              <li>.</li>
+              <li>Usa el botón para encender o apagar todas las velas.</li>
             </ul>
           </div>
 
@@ -185,17 +279,14 @@
           <div class="item">
             <strong>Opciones</strong>
             <div class="controls">
-              <button id="toggleAll">Encender/apagar velas</button>
-              
+              <button id="toggleAll" class="primary" aria-pressed="false">Encender/apagar velas</button>
             </div>
           </div>
-
-          <div style="font-size:0.85rem;opacity:0.9"></div>
         </div>
       </aside>
     </main>
 
-    <footer> Brandon.</footer>
+    <footer>Brandon.</footer>
   </div>
 
   <script>
@@ -206,36 +297,44 @@
         if(!file) return;
         const url = URL.createObjectURL(file);
         const label = e.target.closest('.photo');
-        // quitar texto y colocar imagen
         label.innerHTML = '';
         const img = document.createElement('img');
-        img.src = url; img.alt = 'Foto de recuerdo';
+        img.src = url; 
+        img.alt = 'Foto de recuerdo';
         label.appendChild(img);
-      })
+      });
     });
 
-    // encender/apagar velas
+    // encender/apagar velas con click y teclado (Enter, Space)
     const velas = Array.from(document.querySelectorAll('.vela'));
-    velas.forEach(v => v.addEventListener('click', ()=> v.classList.toggle('lit')));
-
-    // boton alternar todas
-    document.getElementById('toggleAll').addEventListener('click', ()=>{
-      const algunaApagada = velas.some(v => !v.classList.contains('lit'));
-      velas.forEach(v => v.classList.toggle('lit', algunaApagada));
+    velas.forEach(v => {
+      function toggleVela() {
+        v.classList.toggle('lit');
+        const lit = v.classList.contains('lit');
+        v.setAttribute('aria-pressed', lit);
+        v.setAttribute('aria-label', `Vela ${v.dataset.vela}, ${lit ? 'encendida' : 'apagada'}`);
+      }
+      v.addEventListener('click', toggleVela);
+      v.addEventListener('keydown', e => {
+        if(e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleVela();
+        }
+      });
     });
 
-    // descargar HTML actual (simple)
-    document.getElementById('downloadBtn').addEventListener('click', ()=>{
-      const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'ofrenda_personalizada.html';
-      a.click();
+    // botón alternar todas las velas
+    const btnToggleAll = document.getElementById('toggleAll');
+    btnToggleAll.addEventListener('click', ()=>{
+      const algunaApagada = velas.some(v => !v.classList.contains('lit'));
+      velas.forEach(v => {
+        v.classList.toggle('lit', algunaApagada);
+        v.setAttribute('aria-pressed', algunaApagada);
+        v.setAttribute('aria-label', `Vela ${v.dataset.vela}, ${algunaApagada ? 'encendida' : 'apagada'}`);
+      });
+      btnToggleAll.setAttribute('aria-pressed', algunaApagada);
     });
   </script>
-  <br>
-  <audio controls loop >
-    <source src="muerto.mp3">
-  </audio>
+
 </body>
 </html>
