@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ofrenda de Tres Niveles</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      background: radial-gradient(circle at top, #2b2b42 0%, #1b1b2f 80%);
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    .mesa {
+      position: relative;
+      width: 800px;
+      height: 500px;
+    }
+
+    /* Niveles */
+    .nivel {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, #9c6a3a, #7b4f2e);
+      border-top: 6px solid #5b3a1f;
+      border-radius: 8px 8px 0 0;
+      box-shadow: inset 0 -6px 12px rgba(0,0,0,0.3);
+    }
+
+    .nivel1 {
+      bottom: 0;
+      width: 800px;
+      height: 120px;
+    }
+
+    .nivel2 {
+      bottom: 120px;
+      width: 550px;
+      height: 110px;
+    }
+
+    .nivel3 {
+      bottom: 230px;
+      width: 350px;
+      height: 100px;
+    }
+
+    /* Patas */
+    .pata {
+      position: absolute;
+      width: 30px;
+      height: 90px;
+      background: #5b3a1f;
+      bottom: -90px;
+      border-radius: 4px;
+    }
+    .pata.izq { left: 70px; }
+    .pata.der { right: 70px; }
+
+    /* Velas */
+    .vela {
+      width: 25px;
+      height: 80px;
+      background: #fff4cc;
+      border-radius: 6px 6px 2px 2px;
+      position: absolute;
+      box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2), 0 0 15px rgba(255, 230, 150, 0.4);
+      animation: balanceo 2s infinite ease-in-out;
+    }
+
+    @keyframes balanceo {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(1deg); }
+    }
+
+    .llama {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 28px;
+      border-radius: 50% 50% 40% 40%;
+      background: radial-gradient(circle at 50% 30%, #fff6a3 0%, #ffb300 50%, #ff6600 90%);
+      filter: blur(0.8px);
+      animation: flicker 0.8s infinite alternate;
+      box-shadow: 0 0 25px 10px rgba(255,150,0,0.3);
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(0.9); opacity: 0.9; }
+      50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+      100% { transform: translateX(-50%) scale(0.95); opacity: 0.85; }
+    }
+
+    /* Imágenes */
+    .ofrenda-img {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.5s, box-shadow 0.5s;
+      animation: brillar 3s infinite alternate;
+    }
+
+    .ofrenda-img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 200, 100, 0.7);
+    }
+
+    @keyframes brillar {
+      0% { box-shadow: 0 0 10px rgba(255,200,100,0.2); }
+      100% { box-shadow: 0 0 25px rgba(255,200,100,0.5); }
+    }
+
+    /* Posiciones de las imágenes */
+    .img1 { bottom: 25px; left: 120px; }
+    .img2 { bottom: 25px; right: 120px; }
+    .img3 { bottom: 150px; left: 50%; transform: translateX(-150%); }
+    .img4 { bottom: 150px; left: 50%; transform: translateX(50%); }
+    .img5 { bottom: 270px; left: 50%; transform: translateX(-50%); }
+
+    /* Velas colocadas */
+    .vela1 { bottom: 120px; left: 200px; }
+    .vela2 { bottom: 120px; right: 200px; }
+    .vela3 { bottom: 230px; left: 50%; transform: translateX(-50%); }
+  </style>
+</head>
+<body>
+  <div class="mesa">
+    <!-- Niveles -->
+    <div class="nivel nivel3"></div>
+    <div class="nivel nivel2"></div>
+    <div class="nivel nivel1">
+      <div class="pata izq"></div>
+      <div class="pata der"></div>
+    </div>
+
+
+
+    <!-- Velas -->
+    <div class="vela vela1"><div class="llama"></div></div>
+    <div class="vela vela2"><div class="llama"></div></div>
+    <div class="vela vela3"><div class="llama"></div></div>
+  </div>
+</body>
+</html>
