@@ -1,300 +1,192 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ofrenda de Tres Niveles</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      background: radial-gradient(circle at top, #2b2b42 0%, #1b1b2f 80%);
-      overflow: hidden;
-      font-family: 'Poppins', sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ofrenda Pixel Art 💀</title>
+<style>
+/* === FONDO GENERAL === */
+body {
+  margin: 0;
+  background: linear-gradient(to bottom, #1c0934, #2a1748);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+}
 
-    /* ===== EFECTO DE LUCES ===== */
-    .brillo {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at random, rgba(255,255,200,0.05) 0%, transparent 70%);
-      animation: brillar 5s infinite alternate;
-      pointer-events: none;
-    }
+/* === CONTENEDOR PRINCIPAL === */
+.ofrenda {
+  position: relative;
+  width: 700px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
-    @keyframes brillar {
-      0% { opacity: 0.5; filter: brightness(1); }
-      100% { opacity: 0.8; filter: brightness(1.2); }
-    }
+/* === PAPEL PICADO === */
+.papel-picado {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ff4081 0 15px,
+    #ffeb3b 15px 30px,
+    #4caf50 30px 45px,
+    #29b6f6 45px 60px,
+    #ff7043 60px 75px
+  );
+  border-bottom: 4px dotted rgba(255,255,255,0.6);
+  animation: ondear 3s infinite ease-in-out;
+}
+@keyframes ondear {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
 
-    .mesa {
-      position: relative;
-      width: 800px;
-      height: 500px;
-    }
+/* === MESA PIXEL === */
+.mesa {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: repeating-linear-gradient(
+    90deg,
+    #7b4f2e 0 8px,
+    #5b3a1f 8px 16px
+  );
+  border-top: 8px solid #3d2512;
+  box-shadow: inset 0 8px 15px rgba(0,0,0,0.5);
+}
 
-    /* ===== NIVELES ===== */
-    .nivel {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(to bottom, #9c6a3a, #7b4f2e);
-      border-top: 6px solid #5b3a1f;
-      border-radius: 8px 8px 0 0;
-      box-shadow: inset 0 -6px 12px rgba(0,0,0,0.3);
-    }
+/* === VELAS === */
+.vela {
+  position: absolute;
+  bottom: 120px;
+  width: 24px;
+  height: 70px;
+  background: #fff8dc;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(255,255,200,0.5);
+}
+.llama {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffeb3b 40%, #ff5722 80%);
+  box-shadow: 0 0 18px 6px rgba(255,180,50,0.6);
+  animation: flicker 0.4s infinite alternate;
+}
+@keyframes flicker {
+  0% { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0.7; transform: scale(1.1); }
+}
 
-    .nivel1 { bottom: 0; width: 800px; height: 120px; }
-    .nivel2 { bottom: 120px; width: 550px; height: 110px; }
-    .nivel3 { bottom: 230px; width: 350px; height: 100px; }
+/* === PAN DE MUERTO === */
+.pan {
+  position: absolute;
+  width: 60px;
+  height: 45px;
+  background: #dca35c;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255,190,100,0.6);
+  animation: brilloPan 2s infinite alternate;
+}
+@keyframes brilloPan {
+  from { box-shadow: 0 0 10px rgba(255,190,100,0.3); }
+  to { box-shadow: 0 0 25px rgba(255,220,150,0.8); }
+}
 
-    /* ===== PATAS ===== */
-    .pata {
-      position: absolute;
-      width: 30px;
-      height: 90px;
-      background: #5b3a1f;
-      bottom: -90px;
-      border-radius: 4px;
-    }
-    .pata.izq { left: 70px; }
-    .pata.der { right: 70px; }
+/* === FLORES === */
+.flor {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, #ffb300 40%, #ff6f00 90%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255,170,0,0.8);
+  animation: girar 5s linear infinite;
+}
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 
-    /* ===== VELAS ===== */
-    .vela {
-      width: 25px;
-      height: 80px;
-      background: #fff4cc;
-      border-radius: 6px 6px 2px 2px;
-      position: absolute;
-      box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2), 0 0 15px rgba(255, 230, 150, 0.4);
-      animation: balanceo 2s infinite ease-in-out;
-    }
+/* === FOTO === */
+.foto {
+  position: absolute;
+  bottom: 180px;
+  width: 120px;
+  height: 140px;
+  border: 6px solid #ffb74d;
+  border-radius: 10px;
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/La_Catrina_%28Posada%29.jpg/480px-La_Catrina_%28Posada%29.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 25px rgba(255,200,100,0.8);
+  animation: brillar 3s infinite alternate;
+}
+@keyframes brillar {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
 
-    @keyframes balanceo {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(1deg); }
-    }
-
-    .llama {
-      position: absolute;
-      top: -28px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 18px;
-      height: 28px;
-      border-radius: 50% 50% 40% 40%;
-      background: radial-gradient(circle at 50% 30%, #fff6a3 0%, #ffb300 50%, #ff6600 90%);
-      filter: blur(0.8px);
-      animation: flicker 0.8s infinite alternate;
-      box-shadow: 0 0 25px 10px rgba(255,150,0,0.3);
-    }
-
-    @keyframes flicker {
-      0% { transform: translateX(-50%) scale(0.9); opacity: 0.9; }
-      50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
-      100% { transform: translateX(-50%) scale(0.95); opacity: 0.85; }
-    }
-
-    /* ===== PAN DE MUERTO ===== */
-    .pan-css {
-      position: absolute;
-      width: 120px;
-      height: 80px;
-      background: radial-gradient(circle at top, #dca35c 0%, #b87b3d 80%);
-      border-radius: 50%;
-      box-shadow: inset 0 -5px 10px rgba(0,0,0,0.2), 0 0 20px rgba(255,180,80,0.4);
-      animation: brillarPan 3s infinite alternate;
-    }
-
-    @keyframes brillarPan {
-      0% { box-shadow: 0 0 10px rgba(255,200,100,0.2); }
-      100% { box-shadow: 0 0 25px rgba(255,200,100,0.6); }
-    }
-
-    .huesito {
-      position: absolute;
-      width: 10px;
-      height: 40px;
-      background: #b87b3d;
-      border-radius: 20px;
-      top: 10px;
-      left: 50%;
-      transform-origin: center bottom;
-    }
-
-    .uno { transform: translateX(-50%) rotate(0deg); }
-    .dos { transform: translateX(-50%) rotate(45deg); }
-    .tres { transform: translateX(-50%) rotate(90deg); }
-    .cuatro { transform: translateX(-50%) rotate(135deg); }
-
-    .bolita {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background: #dca35c;
-      border-radius: 50%;
-      top: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: inset 0 -3px 6px rgba(0,0,0,0.3);
-    }
-
-    /* ===== FLORES ===== */
-    .flor {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, #ffcc33 0%, #ff9900 70%);
-      box-shadow: 0 0 15px rgba(255,150,0,0.6);
-      animation: girar 5s linear infinite;
-    }
-
-    @keyframes girar {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    /* ===== PAPEL PICADO ===== */
-    .papel-picado {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      padding-top: 20px;
-      z-index: 10;
-    }
-
-    .papel {
-      width: 100px;
-      height: 60px;
-      border-radius: 6px;
-      position: relative;
-      animation: balanceo 3s infinite ease-in-out;
-    }
-
-    .papel::before {
-      content: "";
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      right: 5px;
-      bottom: 5px;
-      border: 2px dotted rgba(255,255,255,0.6);
-      border-radius: 6px;
-    }
-
-    .papel:nth-child(1) { background: #ff4081; }
-    .papel:nth-child(2) { background: #ffeb3b; }
-    .papel:nth-child(3) { background: #4caf50; }
-    .papel:nth-child(4) { background: #29b6f6; }
-    .papel:nth-child(5) { background: #ab47bc; }
-    .papel:nth-child(6) { background: #ff7043; }
-    .papel:nth-child(7) { background: #ffca28; }
-
-    /* ===== FOTO MARCO ===== */
-    .foto {
-      position: absolute;
-      bottom: 250px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 120px;
-      height: 140px;
-      border: 6px solid #ffb74d;
-      border-radius: 8px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/La_Catrina_%28Posada%29.jpg/480px-La_Catrina_%28Posada%29.jpg');
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 0 20px rgba(255,200,100,0.5);
-      animation: brillarPan 3s infinite alternate;
-    }
-
-    /* ===== POSICIONES DE ELEMENTOS ===== */
-    .vela1 { bottom: 120px; left: 200px; }
-    .vela2 { bottom: 120px; right: 200px; }
-    .vela3 { bottom: 230px; left: 50%; transform: translateX(-50%); }
-
-    .pan1 { bottom: 170px; left: 50%; transform: translateX(-50%); }
-    .pan2 { bottom: 50px; left: 180px; }
-    .pan3 { bottom: 50px; right: 180px; }
-
-    .flor1 { bottom: 110px; left: 120px; }
-    .flor2 { bottom: 110px; right: 120px; }
-    .flor3 { bottom: 220px; left: 50%; transform: translateX(-200%); }
-    .flor4 { bottom: 220px; left: 50%; transform: translateX(150%); }
-
-  </style>
+/* === TÍTULO === */
+.titulo {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: #ffd54f;
+  text-shadow: 0 0 10px #ffb300;
+  animation: parpadeo 2s infinite;
+}
+@keyframes parpadeo {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+</style>
 </head>
+
 <body>
-  <!-- PAPEL PICADO -->
-  <div class="papel-picado">
-    <div class="papel"></div>
-    <div class="papel"></div>
-    <div class="papel"></div>
-    <div class="papel"></div>
-    <div class="papel"></div>
-    <div class="papel"></div>
-    <div class="papel"></div>
-  </div>
+  <div class="ofrenda">
+    <!-- Papel Picado -->
+    <div class="papel-picado"></div>
 
-  <div class="mesa">
-    <!-- NIVELES -->
-    <div class="nivel nivel3"></div>
-    <div class="nivel nivel2"></div>
-    <div class="nivel nivel1">
-      <div class="pata izq"></div>
-      <div class="pata der"></div>
-    </div>
+    <!-- Mesa -->
+    <div class="mesa"></div>
 
-    <!-- VELAS -->
-    <div class="vela vela1"><div class="llama"></div></div>
-    <div class="vela vela2"><div class="llama"></div></div>
-    <div class="vela vela3"><div class="llama"></div></div>
+    <!-- Velas -->
+    <div class="vela" style="left:100px;"><div class="llama"></div></div>
+    <div class="vela" style="left:580px;"><div class="llama"></div></div>
+    <div class="vela" style="left:340px;"><div class="llama"></div></div>
 
-    <!-- PANELES DE PAN -->
-    <div class="pan-css pan1">
-      <div class="huesito uno"></div>
-      <div class="huesito dos"></div>
-      <div class="huesito tres"></div>
-      <div class="huesito cuatro"></div>
-      <div class="bolita"></div>
-    </div>
+    <!-- Pan de muerto -->
+    <div class="pan" style="left:300px; bottom:130px;"></div>
+    <div class="pan" style="left:380px; bottom:130px;"></div>
 
-    <div class="pan-css pan2">
-      <div class="huesito uno"></div>
-      <div class="huesito dos"></div>
-      <div class="huesito tres"></div>
-      <div class="huesito cuatro"></div>
-      <div class="bolita"></div>
-    </div>
+    <!-- Flores -->
+    <div class="flor" style="left:140px; bottom:70px;"></div>
+    <div class="flor" style="left:560px; bottom:70px;"></div>
+    <div class="flor" style="left:320px; bottom:70px;"></div>
 
-    <div class="pan-css pan3">
-      <div class="huesito uno"></div>
-      <div class="huesito dos"></div>
-      <div class="huesito tres"></div>
-      <div class="huesito cuatro"></div>
-      <div class="bolita"></div>
-    </div>
+    <!-- Foto -->
+    <div class="foto" style="left:290px;"></div>
 
-    <!-- FLORES -->
-    <div class="flor flor1"></div>
-    <div class="flor flor2"></div>
-    <div class="flor flor3"></div>
-    <div class="flor flor4"></div>
-
-    <!-- FOTO -->
-    <div class="foto"></div>
+    <!-- Título -->
+    <h1 class="titulo">💀 FELIZ DÍA DE MUERTOS 💀</h1>
   </div>
 </body>
 </html>
