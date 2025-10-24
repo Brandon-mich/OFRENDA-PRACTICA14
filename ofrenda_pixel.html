@@ -325,15 +325,37 @@
     justify-content: space-around;
   }
 
+  /* ==== FOOTER Y ENLACE ==== */
   footer {
     margin-top: 25px;
-    font-size: 0.85em;
-    color: #ccc;
+    text-align: center;
+  }
+
+  footer a {
+    color: #ffcc33;
+    text-decoration: none;
+    background: #4d2727;
+    padding: 8px 18px;
+    border-radius: 6px;
+    border: 2px solid #ffcc33;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px #ff7a00, inset 0 0 5px #3a1f1f;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px #000;
+    display: inline-block;
+  }
+
+  footer a:hover {
+    background: #ffcc33;
+    color: #4d2727;
+    box-shadow: 0 0 20px #ffd166, 0 0 10px #ffb400 inset;
+    transform: scale(1.05);
   }
 
 </style>
 </head>
-<body>
+<body id="top">
   <div class="fondo-luces"></div>
 
   <h1>🌼 Ofrenda Pixel Art Tradicional Mexicana 💀</h1>
@@ -387,6 +409,8 @@
     <div class="suelo"></div>
   </div>
 
-  <footer>Angel</footer>
+  <footer>
+    <a href="ofrenda.html">Volver al inicio</a>
+  </footer>
 </body>
 </html>
