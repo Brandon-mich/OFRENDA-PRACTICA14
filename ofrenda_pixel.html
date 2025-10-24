@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ofrenda Pixel Art 💀✨</title>
+<title>Ofrenda Pixel Art con Comida Tradicional 🌼🍶</title>
 <style>
   body {
-    background: linear-gradient(to bottom, #140808, #2b0f0f);
+    background: linear-gradient(to bottom, #1a0808, #3a0f0f);
     color: #fff;
     font-family: 'Courier New', monospace;
     display: flex;
@@ -19,46 +19,54 @@
 
   h1 {
     margin-top: 20px;
-    color: #ffb400;
+    color: #ffcc33;
     text-shadow: 2px 2px #000;
     font-size: 2em;
+    animation: brillo 3s infinite alternate;
+  }
+
+  @keyframes brillo {
+    from { text-shadow: 2px 2px 6px #ffb400; }
+    to { text-shadow: 0 0 20px #ffd166; }
   }
 
   /* Fondo con luces pixeladas */
   .fondo-luces {
     position: fixed;
     inset: 0;
-    background: radial-gradient(circle, #ff9a00 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.15;
-    animation: parpadeo 3s infinite alternate;
+    background: radial-gradient(circle, #ffd166 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.2;
+    animation: parpadeo 4s infinite alternate;
     z-index: -1;
   }
 
   @keyframes parpadeo {
-    from { opacity: 0.15; }
+    from { opacity: 0.1; }
     to { opacity: 0.3; }
   }
 
-  /* Papel picado */
+  /* Papel picado colorido */
   .papel-picado {
     display: flex;
-    gap: 5px;
-    margin: 10px 0 25px 0;
+    gap: 6px;
+    margin: 20px 0;
   }
 
   .banderita {
-    width: 24px;
-    height: 14px;
-    background: #ff3c00;
+    width: 35px;
+    height: 18px;
     clip-path: polygon(0 0, 100% 0, 100% 75%, 50% 100%, 0 75%);
-    animation: ondear 2.2s infinite ease-in-out;
+    animation: ondear 2s infinite ease-in-out;
   }
 
-  .banderita:nth-child(2) { background: #ff9a00; animation-delay: 0.3s; }
-  .banderita:nth-child(3) { background: #ff3c00; animation-delay: 0.6s; }
-  .banderita:nth-child(4) { background: #ff9a00; animation-delay: 0.9s; }
-  .banderita:nth-child(5) { background: #ff3c00; animation-delay: 1.2s; }
+  .banderita:nth-child(1) { background: #ff3c00; }
+  .banderita:nth-child(2) { background: #ff9a00; }
+  .banderita:nth-child(3) { background: #ffe100; }
+  .banderita:nth-child(4) { background: #2aff00; }
+  .banderita:nth-child(5) { background: #00bfff; }
+  .banderita:nth-child(6) { background: #ff00ff; }
+  .banderita:nth-child(7) { background: #8a2be2; }
 
   @keyframes ondear {
     0%, 100% { transform: rotate(2deg); }
@@ -68,8 +76,8 @@
   /* Altar */
   .altar {
     position: relative;
-    width: 360px;
-    height: 280px;
+    width: 380px;
+    height: 320px;
     background: repeating-linear-gradient(
       45deg,
       #3c1c1c,
@@ -77,12 +85,19 @@
       #4d2727 6px,
       #4d2727 12px
     );
-    border: 4px solid #6a3535;
-    box-shadow: inset 0 0 10px #000, 0 0 20px #ff7a00;
+    border: 4px solid #7a4040;
+    box-shadow: 0 0 30px #ff7a00, inset 0 0 20px #000;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 15px;
+    border-radius: 8px;
+    animation: aparecer 2s ease;
+  }
+
+  @keyframes aparecer {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
   }
 
   .nivel {
@@ -95,15 +110,18 @@
     justify-content: space-evenly;
     align-items: center;
     box-shadow: 0 4px 0 #3b1e1e;
+    border-radius: 6px;
   }
 
-  /* Elementos */
+  /* Elementos del altar */
   .vela {
     width: 10px;
     height: 22px;
     background: #fff8e7;
     position: relative;
+    border-radius: 2px;
   }
+
   .vela::before {
     content: '';
     position: absolute;
@@ -118,7 +136,7 @@
 
   @keyframes flame {
     from { transform: scale(1); opacity: 0.8; }
-    to { transform: scale(1.2); opacity: 1; }
+    to { transform: scale(1.3); opacity: 1; }
   }
 
   .flor {
@@ -134,24 +152,76 @@
       -8px 8px #ffb400,
       8px -8px #ffb400,
       -8px -8px #ffb400;
+    border-radius: 50%;
+    animation: girar 3s infinite linear;
   }
 
+  @keyframes girar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* Pan de muerto */
   .pan {
-    width: 26px;
-    height: 13px;
+    width: 28px;
+    height: 14px;
     background: #d69a56;
     border-radius: 10px;
     position: relative;
   }
+
   .pan::before {
     content: '';
     position: absolute;
-    width: 13px;
+    width: 14px;
     height: 5px;
     background: #b17c3b;
     top: 3px;
-    left: 6px;
+    left: 7px;
     border-radius: 2px;
+  }
+
+  /* Plato de tamales */
+  .plato {
+    width: 40px;
+    height: 12px;
+    background: #d4a15d;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 3px 0 #8c5b2f;
+  }
+
+  .plato::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 6px;
+    width: 28px;
+    height: 8px;
+    background: linear-gradient(to bottom, #f5e7a1, #d4c16b);
+    border-radius: 3px;
+    box-shadow: 0 2px 0 #a58a3f;
+  }
+
+  /* Barra de atole */
+  .atole {
+    width: 14px;
+    height: 28px;
+    background: #dcbf94;
+    border: 2px solid #a77a4d;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .atole::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 2px;
+    width: 8px;
+    height: 5px;
+    background: #fff5cc;
+    border-radius: 50%;
   }
 
   .foto {
@@ -162,6 +232,7 @@
     position: relative;
     box-shadow: 2px 2px #000;
   }
+
   .foto::before {
     content: '';
     position: absolute;
@@ -170,14 +241,9 @@
     background: #f5c7a9;
     top: 9px;
     left: 9px;
-    box-shadow:
-      4px 0 #000,
-      0 4px #000,
-      -4px 0 #000,
-      0 -4px #000;
+    box-shadow: 0 0 0 2px #000;
   }
 
-  /* Piso extra decorativo */
   .suelo {
     width: 100%;
     height: 30px;
@@ -192,8 +258,21 @@
     box-shadow: inset 0 3px 0 #2a1515;
   }
 
+  /* Flores extra */
+  .flores-extra {
+    position: absolute;
+    bottom: -15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .flores-extra .flor {
+    transform: scale(1.3);
+  }
+
   footer {
-    margin-top: 20px;
+    margin-top: 25px;
     font-size: 0.85em;
     color: #ccc;
   }
@@ -203,9 +282,12 @@
 <body>
   <div class="fondo-luces"></div>
 
-  <h1>💀 Ofrenda Pixel Art Mejorada 🌼</h1>
+  <h1>🌼 Ofrenda Pixel Art 🍶</h1>
 
+  <!-- Papel picado -->
   <div class="papel-picado">
+    <div class="banderita"></div>
+    <div class="banderita"></div>
     <div class="banderita"></div>
     <div class="banderita"></div>
     <div class="banderita"></div>
@@ -213,6 +295,7 @@
     <div class="banderita"></div>
   </div>
 
+  <!-- Altar -->
   <div class="altar">
     <div class="nivel">
       <div class="vela"></div>
@@ -230,11 +313,19 @@
 
     <div class="nivel">
       <div class="vela"></div>
-      <div class="flor"></div>
-      <div class="pan"></div>
+      <div class="plato"></div>
+      <div class="atole"></div>
       <div class="flor"></div>
       <div class="vela"></div>
     </div>
+
+    <div class="flores-extra">
+      <div class="flor"></div>
+      <div class="flor"></div>
+      <div class="flor"></div>
+      <div class="flor"></div>
+    </div>
+
     <div class="suelo"></div>
   </div>
 
